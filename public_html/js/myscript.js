@@ -8,9 +8,9 @@ $(document).ready(function () {
         url: "php/categorias.php",
         dataType: "json",
         success: function (datos) {
-            for ($i = 0; datos.length > $i; $i++) {
-                $("#listaCategorias").append("<a id='" + datos[$i].codigo + "'href='javascript:void(0)' class='collection-item'>" + datos[$i].nombre + "</a>");
-            }
+            $.each(datos, function(index, value){
+                $("#listaCategorias").append("<a href='javascript:void(0)' class='collection-item'>" + value.nombre + "</a>");
+            });
         }
     });
 
@@ -18,14 +18,14 @@ $(document).ready(function () {
         url: "php/carrusel.php",
         dataType: "json",
         success: function (datos) {
-            for ($i = 0; datos.length > $i; $i++) {
-                if ($i === 0) {
+            $.each(datos, function(index, value){
+                if (index === 0) {
                     clase = "item active";
                 } else {
                     clase = "item";
                 }
                 itemCarrusel = "<div class='" + clase + "'>" +
-                        "<img src='" + datos[$i].src + "'>" +
+                        "<img src='" + value.src + "'>" +
                         "<div class='carousel-caption'>" +
                         "<div data-animation='animated fadeInRightBig'>" +
                         "<h5 class='h5-responsive'>This is the caption for slide 1</h5>" +
@@ -33,7 +33,7 @@ $(document).ready(function () {
                         "</div>" +
                         "</div>";
                 $("#carrusel").append(itemCarrusel);
-            }
+            });
         }
     });
 
@@ -41,12 +41,12 @@ $(document).ready(function () {
         url: "php/articulos.php",
         dataType: "json",
         success: function (datos) {
-            for ($i = 0; datos.length > $i; $i++) {
+            $.each(datos, function(index, value){
                 articulo = "<div class='col-md-4'>" +
                         "<div class='card hoverable'>" +
                         "<div class='card-image'>" +
-                        "<img src='" + datos[$i].src +"'>" +
-                        "<span class='card-title'>" + datos[$i].nombre + " - " + datos[$i].precio + "€</span>" +
+                        "<img src='" + value.src +"'>" +
+                        "<span class='card-title'>" + value.nombre + " - " + value.precio + "€</span>" +
                         "</div>" +
                         "<div class='card-content'>" +
                         "<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>" +
@@ -58,7 +58,7 @@ $(document).ready(function () {
                         "</div>" +
                         "</div>";
                 $("#contenedor").append(articulo);
-            }
+            });
         }
     });
 });
