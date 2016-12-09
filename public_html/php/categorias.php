@@ -2,10 +2,12 @@
     
 $categorias = array
 	(
-	array("id"=>"1", "nombre"=>"Carnívoros"),
-	array("id"=>"2", "nombre"=>"Herbívoros"),
-	array("id"=>"3", "nombre"=>"Marinos"),
-	array("id"=>"4", "nombre"=>"Voladores")
+	array("id"=>"1", "nombre"=>"Dinosaurios carnívoros"),
+	array("id"=>"2", "nombre"=>"Dinosaurios herbívoros"),
+	array("id"=>"3", "nombre"=>"Dinosaurios marinos"),
+	array("id"=>"4", "nombre"=>"Dinosaurios voladores"),
+    	array("id"=>"5", "nombre"=>"Alimentación"),
+        array("id"=>"6", "nombre"=>"Accesorios")
 	);
 
 echo json_encode($categorias);
