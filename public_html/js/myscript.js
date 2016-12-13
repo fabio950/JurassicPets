@@ -5,7 +5,7 @@
  */
 $(document).ready(function () {
     $.ajax({
-        url: "php/categorias.php",
+        url: "php/categorias_1.php",
         dataType: "json",
         success: function (datos) {
             $.each(datos, function(index, value){
@@ -46,14 +46,13 @@ $(document).ready(function () {
                         "<div class='card hoverable'>" +
                         "<div class='card-image'>" +
                         "<img src='" + value.src +"'>" +
-                        "<span class='card-title'>" + value.nombre + " - " + value.precio + "€</span>" +
                         "</div>" +
                         "<div class='card-content'>" +
-                        "<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>" +
+                        "<h4>" + value.nombre + "</h4>" +
+                        "<h5>" + value.precio + " €</h5>" +
                         "</div>" +
                         "<div class='card-action'>" +
-                        "<button type='button' class='btn btn-default waves-effect waves-light'>View</button>" +
-                        "<button type='button' class='btn btn-info waves-effect waves-light'>Buy now!</button>" +
+                        "<button type='button' class='btn btn-default waves-effect waves-light'>Comprar</button>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
