@@ -5,7 +5,7 @@
  */
 $(document).ready(function () {
     $.ajax({
-        url: "php/categorias_1.php",
+        url: "php/categoriasBD.php",
         dataType: "json",
         success: function (datos) {
             $.each(datos, function(index, value){
@@ -38,21 +38,21 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        url: "php/articulos.php",
+        url: "php/articulosBD.php",
         dataType: "json",
         success: function (datos) {
             $.each(datos, function(index, value){
                 articulo = "<div class='col-md-4'>" +
                         "<div class='card hoverable'>" +
                         "<div class='card-image'>" +
-                        "<img src='" + value.src +"'>" +
+                        "<img src='" + value.imagen +"'>" +
                         "</div>" +
-                        "<div class='card-content'>" +
+                        "<div>" +
                         "<h4>" + value.nombre + "</h4>" +
                         "<h5>" + value.precio + " €</h5>" +
                         "</div>" +
                         "<div class='card-action'>" +
-                        "<button type='button' class='btn btn-default waves-effect waves-light'>Comprar</button>" +
+                        "<button type='button' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal'>Comprar</button>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
