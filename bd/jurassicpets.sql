@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-12-2016 a las 19:55:29
+-- Tiempo de generación: 16-12-2016 a las 08:46:39
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `jurassicpets`
 --
 
+CREATE DATABASE IF NOT EXISTS `jurassicpets` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `jurassicpets`;
+
 -- --------------------------------------------------------
 
 --
@@ -33,16 +36,19 @@ CREATE TABLE IF NOT EXISTS `articulo` (
   `precio` float NOT NULL,
   `categoria` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `categoria` (`categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+  KEY `categoria` (`categoria`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `articulo`
 --
 
 INSERT INTO `articulo` (`id`, `nombre`, `imagen`, `precio`, `categoria`) VALUES
-(1, 'Velociraptor', 'img/velociraptor-2.jpg', 1000, 1),
-(2, 'Brachiosaurus', 'img/brachiosaurus-1.jpg', 5000.99, 2);
+(1, 'Velociraptor', 'velociraptor.jpg', 1000, 1),
+(2, 'Triceratops', 'triceratops.jpg', 1500, 2),
+(3, 'Brachiosaurus', 'brachiosaurus.jpg', 3000, 2),
+(4, 'Spinosaurus', 'spinosaurus.jpg', 5000, 1),
+(5, 'Pteranodon', 'pteranodon.jpg', 2000, 4);
 
 -- --------------------------------------------------------
 
@@ -54,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -62,7 +68,9 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'Dinosaurios carnívoros'),
-(2, 'Dinosaurios herbívoros');
+(2, 'Dinosaurios herbívoros'),
+(3, 'Dinosaurios marinos'),
+(4, 'Dinosaurios voladores');
 
 --
 -- Restricciones para tablas volcadas

@@ -25,13 +25,8 @@ $(document).ready(function () {
                     clase = "item";
                 }
                 itemCarrusel = "<div class='" + clase + "'>" +
-                        "<img src='" + value.src + "'>" +
-                        "<div class='carousel-caption'>" +
-                        "<div data-animation='animated fadeInRightBig'>" +
-                        "<h5 class='h5-responsive'>This is the caption for slide 1</h5>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>";
+                               "<img class='slide-image' src='" + value.src + "' alt=''>" +
+                               "</div>";
                 $("#carrusel").append(itemCarrusel);
             });
         }
@@ -45,7 +40,7 @@ $(document).ready(function () {
                 articulo = "<div class='col-md-4'>" +
                         "<div class='card hoverable'>" +
                         "<div class='card-image'>" +
-                        "<img src='" + value.imagen +"'>" +
+                        "<img src='img/" + value.imagen +"'>" +
                         "</div>" +
                         "<div>" +
                         "<h4>" + value.nombre + "</h4>" +
