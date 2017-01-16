@@ -64,11 +64,11 @@ $(document).ready(function () {
         
        categoria = $(this).attr('id');
        $.ajax({
-        url: "php/articulosBD.php",
+        url: "php/articulosCategoriasBD.php?id="+categoria,
+        type: "GET",
         dataType: "json",
         success: function (datos) {
             $.each(datos, function(index, value){
-                if(value.categoria === categoria){
                     articulo = "<div class='col-md-4'>" +
                                 "<div class='card hoverable'>" +
                                     "<div class='card-image'>" +
@@ -84,7 +84,7 @@ $(document).ready(function () {
                                 "</div>" +
                             "</div>";
                     $("#contenedor").append(articulo);
-                }
+                
             });
         }
     });
