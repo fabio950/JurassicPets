@@ -1,8 +1,9 @@
 <?php
 
+$id = $_GET["id"];
 $con = mysqli_connect("localhost", "root", "", "jurassicpets");
 
-$sql = "SELECT * FROM articulo";
+$sql = "SELECT * FROM articulo WHERE categoria=$id";
 
 $resultado = mysqli_query($con, $sql);
 

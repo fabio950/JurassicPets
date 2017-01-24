@@ -46,7 +46,7 @@ $(document).ready(function () {
                                     "<div>" +
                                         "<h4>" + value.nombre + "</h4>" +
                                         "<h5>" + value.precio + " €</h5>" +
-                                    "</div>" +
+                                    "</div>" + "<div class='hiddendiv'>"+value.descripcion+"</div>" +
                                     "<div class='card-action'>" +
                                         "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal'>Comprar</button>" +
                                     "</div>" +
@@ -64,27 +64,28 @@ $(document).ready(function () {
         
        categoria = $(this).attr('id');
        $.ajax({
-        url: "php/articulosBD.php",
+        url: "php/articulosCategoriasBD.php?id="+categoria,
+        type: "GET",
         dataType: "json",
         success: function (datos) {
             $.each(datos, function(index, value){
-                if(value.categoria === categoria){
                     articulo = "<div class='col-md-4'>" +
                                 "<div class='card hoverable'>" +
                                     "<div class='card-image'>" +
                                         "<img src='img/" + value.imagen +"'>" +
                                     "</div>" +
                                     "<div>" +
-                                        "<h4 class='artNombre'>" + value.nombre + "</h4>" +
+                                        "<h4>" + value.nombre + "</h4>" +
                                         "<h5>" + value.precio + " €</h5>" +
-                                    "</div>" +
+                                    "</div>" + 
+                                    "<div class='hiddendiv'>"+value.descripcion+"</div>" +
                                     "<div class='card-action'>"+
                                         "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal' onClick='modal()'>Comprar</button>" +
                                     "</div>" +
                                 "</div>" +
                             "</div>";
                     $("#contenedor").append(articulo);
-                }
+                
             });
         }
     });
@@ -93,7 +94,11 @@ $(document).ready(function () {
     
     $('#contenedor').on('click', '#btnArticulo', function(){
         nombre = $(this).parent().parent().children('div:nth-child(2)').find('h4').text();
+        descripcion = $(this).parent().parent().children('div:nth-child(3)').text();
+        precio = $(this).parent().parent().children('div:nth-child(2)').find('h5').text();
         $('.modal-title').text(nombre);
+        $('.modalDescripcion').text(descripcion);
+        $('.modalPrecio').text(precio);
     });
 
 });
