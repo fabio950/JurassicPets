@@ -13,3 +13,10 @@ function Articulo(id, nombre, precio) {
     this.nombre = nombre;
     this.precio = precio;
 }
+
+Carrito.prototype.verCarrito = function() {
+    for (var i = 0; i < this.articulos.length; i++) {
+        alert(this.articulos[i].nombre);
+    }
+    
+}

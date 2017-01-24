@@ -1,15 +1,18 @@
- /* 
+/* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 $(document).ready(function () {
+    miCarrito = new Carrito("1", "22/11/2016");
+
+
     $.ajax({
         url: "php/categoriasBD.php",
         dataType: "json",
         success: function (datos) {
-            $.each(datos, function(index, value){
-                $("#listaCategorias").append("<a href='javascript:void(0)' class='collection-item' id='"+value.id+"'>" + value.nombre + "</a>");
+            $.each(datos, function (index, value) {
+                $("#listaCategorias").append("<a href='javascript:void(0)' class='collection-item' id='" + value.id + "'>" + value.nombre + "</a>");
             });
         }
     });
@@ -18,15 +21,15 @@ $(document).ready(function () {
         url: "php/carrusel.php",
         dataType: "json",
         success: function (datos) {
-            $.each(datos, function(index, value){
+            $.each(datos, function (index, value) {
                 if (index === 0) {
                     clase = "item active";
                 } else {
                     clase = "item";
                 }
                 itemCarrusel = "<div class='" + clase + "'>" +
-                               "<img class='slide-image' src='" + value.src + "' alt=''>" +
-                               "</div>";
+                        "<img class='slide-image' src='" + value.src + "' alt=''>" +
+                        "</div>";
                 $("#carrusel").append(itemCarrusel);
             });
         }
@@ -36,63 +39,63 @@ $(document).ready(function () {
         url: "php/articulosBD.php",
         dataType: "json",
         success: function (datos) {
-            $.each(datos, function(index, value){
-                
+            $.each(datos, function (index, value) {
+
                 articulo = "<div class='col-md-4'>" +
-                                "<div class='card hoverable'>" +
-                                    "<div class='card-image'>" +
-                                        "<img src='img/" + value.imagen +"'>" +
-                                    "</div>" +
-                                    "<div>" +
-                                        "<h4>" + value.nombre + "</h4>" +
-                                        "<h5>" + value.precio + " €</h5>" +
-                                    "</div>" + "<div class='hiddendiv'>"+value.descripcion+"</div>" +
-                                    "<div class='card-action'>" +
-                                        "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal'>Comprar</button>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>";
+                        "<div class='card hoverable'>" +
+                        "<div class='card-image'>" +
+                        "<img src='img/" + value.imagen + "'>" +
+                        "</div>" +
+                        "<div>" +
+                        "<h4>" + value.nombre + "</h4>" +
+                        "<h5>" + value.precio + " €</h5>" +
+                        "</div>" + "<div class='hiddendiv'>" + value.descripcion + "</div>" +
+                        "<div class='card-action'>" +
+                        "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal'>Comprar</button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
                 $("#contenedor").append(articulo);
             });
         }
     });
-    
-    
-    $('#listaCategorias').on('click', 'a', function(){
-        
+
+
+    $('#listaCategorias').on('click', 'a', function () {
+
         $("#contenedor").children().remove();
-        
-       categoria = $(this).attr('id');
-       $.ajax({
-        url: "php/articulosCategoriasBD.php?id="+categoria,
-        type: "GET",
-        dataType: "json",
-        success: function (datos) {
-            $.each(datos, function(index, value){
+
+        categoria = $(this).attr('id');
+        $.ajax({
+            url: "php/articulosCategoriasBD.php?id=" + categoria,
+            type: "GET",
+            dataType: "json",
+            success: function (datos) {
+                $.each(datos, function (index, value) {
                     articulo = "<div class='col-md-4'>" +
-                                "<div class='card hoverable'>" +
-                                    "<div class='card-image'>" +
-                                        "<img src='img/" + value.imagen +"'>" +
-                                    "</div>" +
-                                    "<div>" +
-                                        "<h4>" + value.nombre + "</h4>" +
-                                        "<h5>" + value.precio + " €</h5>" +
-                                    "</div>" + 
-                                    "<div class='hiddendiv'>"+value.descripcion+"</div>" +
-                                    "<div class='card-action'>"+
-                                        "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal' onClick='modal()'>Comprar</button>" +
-                                    "</div>" +
-                                "</div>" +
+                            "<div class='card hoverable'>" +
+                            "<div class='card-image'>" +
+                            "<img src='img/" + value.imagen + "'>" +
+                            "</div>" +
+                            "<div>" +
+                            "<h4>" + value.nombre + "</h4>" +
+                            "<h5>" + value.precio + " €</h5>" +
+                            "</div>" +
+                            "<div class='hiddendiv'>" + value.descripcion + "</div>" +
+                            "<div class='card-action'>" +
+                            "<button type='button' id='btnArticulo' class='btn btn-default waves-effect waves-light' data-toggle='modal' data-target='#myModal' onClick='modal()'>Comprar</button>" +
+                            "</div>" +
+                            "</div>" +
                             "</div>";
                     $("#contenedor").append(articulo);
-                
-            });
-        }
+
+                });
+            }
+        });
     });
-    });
-    
-    
-    $('#contenedor').on('click', '#btnArticulo', function(){
+
+
+    $('#contenedor').on('click', '#btnArticulo', function () {
         nombre = $(this).parent().parent().children('div:nth-child(2)').find('h4').text();
         descripcion = $(this).parent().parent().children('div:nth-child(3)').text();
         precio = $(this).parent().parent().children('div:nth-child(2)').find('h5').text();
@@ -101,5 +104,29 @@ $(document).ready(function () {
         $('.modalPrecio').text(precio);
     });
 
+    $('#myModal').on('click', '#btn_comprar', function () {
+        nombre = $(this).parent().parent().children('div:nth-child(1)').find('h4').text();
+
+        miArticulo = new Articulo(1, nombre, 10);
+        miCarrito.anyadirArticulo(miArticulo);
+
+    });
+
+    $('#btn_carrito').click(function () {
+        miCarrito.verCarrito();
+
+    });
+
+    $('#modalCarrito').on('click', '#btn_comprar', function () {
+        $.ajax({
+        type: 'POST',
+                data: 'carrito=' + JSON.stringify(miCarrito),
+                //dataType: 'json',
+                url: 'carrito.php',
+                success: function(data){
+                //$('#carrito').html(data);
+                }
+            })
+    });
 });
 
