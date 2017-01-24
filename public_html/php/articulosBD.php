@@ -9,7 +9,8 @@ $resultado = mysqli_query($con, $sql);
 $i = 0;
 while($fila = mysqli_fetch_assoc($resultado)){
     $articulos[$i] = array("id"=>$fila["id"], "nombre"=>array_map('utf8_encode', $fila)["nombre"], 
-        "imagen"=>$fila["imagen"], "precio"=>$fila["precio"], "categoria"=>$fila["categoria"]);
+        "descripcion"=>array_map('utf8_encode', $fila)["descripcion"], "imagen"=>$fila["imagen"], 
+        "precio"=>$fila["precio"], "categoria"=>$fila["categoria"]);
     $i++;
 }
 
