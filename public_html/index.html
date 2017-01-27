@@ -172,11 +172,12 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
                         <p class="modalDescripcion">Some text in the modal.</p>
+                        <span id="modalId" class="hiddendiv">Some text in the modal.</span>
                         <h6 class="modalPrecio"></h6>
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-default" id="btn_comprar" data-dismiss="modal">Comprar</button>
                         </div>
                     </div>
@@ -189,16 +190,18 @@ and open the template in the editor.
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Ventana Modal</h4>
+                        <h4 class="modal-title" id="modal-title">Ventana Modal</h4>
                     </div>
-                    <div class="modal-body">
-                        <p class="modalDescripcion">Some text in the modal.</p>
-                        <h6 class="modalPrecio"></h6>
+                    <div class="modal-body" id="modalCarritoBody">
+                        <!--
+                        <p class="modalDescripcion" id="modalDescripcion">Some text in the modal.</p>
+                        <h6 class="modalPrecio" id="modalPrecio"></h6>
+                        -->
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-default" id="btn_comprar" data-dismiss="modal" >Finalizar compra</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-default" id="btn_comprarCarrito" data-dismiss="modal" >Finalizar compra</button>
                         </div>
                     </div>
                 </div>
