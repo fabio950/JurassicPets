@@ -7,21 +7,16 @@ $ocarrito = json_decode($carrito);
 
 $con = mysqli_connect("localhost", "root", "", "jurassicpets");
 
-$sql = "INSERT INTO pedido VALUES ($ocarrito->numero, '$ocarrito->fecha');";
+$sql = "INSERT INTO pedido VALUES (null, '$ocarrito->fecha');";
 
 $con->query($sql);
 
-mysqli_close($con);
-
-$con2 = mysqli_connect("localhost", "root", "", "jurassicpets");
-
-$sql2 = "";
+$idPedido = $con->insert_id;
 
 foreach ($ocarrito->articulos as $fila){
-    $sql2 += "INSERT INTO linea_pedido VALUES ($fila->id, '$fila->nombre', '$fila->descripcion', $fila->unidad, $fila->precio, $ocarrito->numero);";
+    $sql2 = "INSERT INTO linea_pedido VALUES ('".$fila->id."', '".$fila->nombre."', '".$fila->descripcion."', '".$fila->unidad."', '".$fila->precio."', '".$idPedido."');";
+    $con->query($sql2);
 }
 
-$con2->query($sql2);
-
-mysqli_close($con2);
+$con->close();
 ?>
