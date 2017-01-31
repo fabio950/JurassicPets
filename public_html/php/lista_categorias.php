@@ -1,51 +1,51 @@
 <?php
+
 //error_reporting(0);
-    $page = $_POST['page'];  // Almacena el numero de pagina actual
-    $limit = $_POST['rows']; // Almacena el numero de filas que se van a mostrar por pagina
-    $sidx = $_POST['sidx'];  // Almacena el indice por el cual se har� la ordenaci�n de los datos
-    $sord = $_POST['sord'];  // Almacena el modo de ordenaci�n
+$page = $_POST['page'];  // Almacena el numero de pagina actual
+$limit = $_POST['rows']; // Almacena el numero de filas que se van a mostrar por pagina
+$sidx = $_POST['sidx'];  // Almacena el indice por el cual se har� la ordenaci�n de los datos
+$sord = $_POST['sord'];  // Almacena el modo de ordenaci�n
 
-	
-    if(!$sidx) $sidx =1;
+if (!$sidx) {
+    $sidx = 1;
+}
 
-    $db = mysql_connect("localhost","root","") or die("Connection Error: " . mysql_error());
-    mysql_select_db("jurassicpets") or die("Error conecting to db.");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+mysqli_set_charset($con, "utf8");
+
+$sql = "SELECT COUNT(*) AS count FROM categoria";
+$result = mysqli_query($con,$sql);
+$row = mysqli_fetch_assoc($result);
+$count = $row['count'];
+
+if ($count > 0) {
+    $total_pages = ceil($count / $limit);
+} else {
+    $total_pages = 0;
+}
+if ($page > $total_pages) {
+    $page = $total_pages;
+}
     
-	$result = mysql_query("SELECT COUNT(*) AS count FROM categoria");
+$start = $limit * $page - $limit;
 
-    $fila = mysql_fetch_array($result,MYSQL_ASSOC);
-	$count = $fila['count'];
+$sql2 = "SELECT * FROM categoria ORDER BY $sidx $sord LIMIT $start , $limit;";
+$result=mysqli_query($con,$sql2);
 
-    if( $count >0 ) {
-	$total_pages = ceil($count/$limit);
-    } else {
-	$total_pages = 0;
-    }
-    if ($page > $total_pages)
-        $page=$total_pages;
+$responce = new StdClass();
+$responce->page = $page;
+$responce->total = $total_pages;
+$responce->records = $count;
 
-    $start = $limit*$page - $limit;
+$i = 0;
+while ($row=mysqli_fetch_assoc($result)) {
+    $responce->rows[$i]['id'] = $row['id'];
+    $responce->rows[$i]['cell'] = array($row['id'], $row['nombre']);
+    $i++;
+}
 
-    $SQL = "SELECT * FROM categoria ORDER BY $sidx $sord LIMIT $start , $limit;"; 
-    $result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
+echo json_encode($responce);
 
-	
-    // ������� Construir el objeto JSON con los datos de la consulta !!!!!!!!!!!
-    $responce = new StdClass();
-    $responce->page = $page;
-	$responce->total = $total_pages;
-    $responce->records = $count;
+mysqli_close($con);
 
-
-    $i = 0;
-    while ($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
-        $responce->rows[$i]['id'] = $row['id'];
-        $responce->rows[$i]['cell'] = array($row['id'],$row['nombre']);
-        $i++;
-    }
-
-	echo json_encode($responce);
-	
-	// ������� Devolver el objeto JSON al cliente !!!!!!!!!!!
-    
 ?>
