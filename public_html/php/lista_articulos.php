@@ -6,15 +6,17 @@
     $sord = $_POST['sord'];  // Almacena el modo de ordenaci�n
 
 	
-    if(!$sidx) $sidx =1;
+    if (!$sidx) {
+    $sidx = 1;
+}
 
-    $db = mysql_connect("localhost","root","") or die("Connection Error: " . mysql_error());
-    mysql_select_db("jurassicpets") or die("Error conecting to db.");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+mysqli_set_charset($con, "utf8");
     
-	$result = mysql_query("SELECT COUNT(*) AS count FROM articulo");
-
-    $fila = mysql_fetch_array($result,MYSQL_ASSOC);
-	$count = $fila['count'];
+$sql = "SELECT COUNT(*) AS count FROM articulo";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($result);
+$count = $row['count'];
 
     if( $count >0 ) {
 	$total_pages = ceil($count/$limit);
@@ -26,19 +28,16 @@
 
     $start = $limit*$page - $limit;
 
-    $SQL = "SELECT * FROM articulo ORDER BY $sidx $sord LIMIT $start , $limit;"; 
-    $result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
+$sql2 = "SELECT * FROM articulo ORDER BY $sidx $sord LIMIT $start , $limit;";
+$result = mysqli_query($con, $sql2);
 
-	
-    // ������� Construir el objeto JSON con los datos de la consulta !!!!!!!!!!!
-    $responce = new StdClass();
-    $responce->page = $page;
-	$responce->total = $total_pages;
-    $responce->records = $count;
-
+	$responce = new StdClass();
+$responce->page = $page;
+$responce->total = $total_pages;
+$responce->records = $count;
 
     $i = 0;
-    while ($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
+    while ($row = mysqli_fetch_assoc($result)) {
         $responce->rows[$i]['id'] = $row['id'];
         $responce->rows[$i]['cell'] = array($row['id'],$row['nombre'],$row['descripcion'],$row['imagen'],$row['precio'],$row['categoria']);
         $i++;
@@ -46,6 +45,6 @@
 
 	echo json_encode($responce);
 	
-	// ������� Devolver el objeto JSON al cliente !!!!!!!!!!!
+	mysqli_close($con);
     
 ?>
