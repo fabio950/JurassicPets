@@ -1,0 +1,10 @@
+.div {
+    background-color: red;
+    width: 200px;
+    height: 200px;
+    transition: transform 3s;
+}
+
+.transladar {
+    transform: translate(1600px, 0px);
+}
