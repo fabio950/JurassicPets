@@ -113,11 +113,38 @@ $(document).ready(function () {
         $('#btn_art').addClass("active");
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
-        links = "<a href='javascript:void(0)'>Crear</a> " +
-                "<a href='javascript:void(0)' id='btn_modificar'>Modificar</a> " +
-                "<a href='javascript:void(0)'>Eliminar</a>";
+        links = "<a id='btn_crear' href='javascript:void(0)'>Crear</a> " +
+                "<a id='btn_modificar' href='javascript:void(0)' id='btn_modificar'>Modificar</a> " +
+                "<a id='btn_eliminar' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
         $("#capaJqgrid").append(links);
+
+        $("#btn_crear").click(function() {
+            opc = 1;
+        });
+        
+        $("#btn_modificar").click(function() {
+            opc = 2;
+        });
+
+        $("#btn_eliminar").click(function() {
+            var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
+            if (id) {
+                var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
+                idArt = ret.id;
+                
+                $.ajax({
+                    type: 'POST',
+                    data: 'id=' + idArt,
+                    url: 'php/delete_articulo.php',
+                    success: function(data){
+                        $("#tbltareas").trigger("reloadGrid");
+                    }
+                });
+            } else {
+                alert("Please select row");
+            }
+        });
 
         jQuery("#tbltareas").jqGrid({
             url: 'php/lista_articulos.php',
