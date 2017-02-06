@@ -18,10 +18,11 @@ $(document).ready(function () {
         var nombre = $('#nombre').val();
         var password = $('#password').val();
         var role = $('#role').val();
+        var data = { nombre : nombre, password : password, role : role};
         $.ajax({
-            url: 'php/registrar.php',
-            data : { nombre : nombre, password : password, role : role},
             type : 'POST',
+            data : data,
+            url: 'php/registrar.php',
             dataType : 'json',
             success : function(data){
                 
@@ -38,7 +39,7 @@ $(document).ready(function () {
             type : 'POST',
             dataType : 'json',
             success : function(data){
-                window.open("index.html");
+               
             }
         });
     });
