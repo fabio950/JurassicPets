@@ -38,7 +38,7 @@ $(document).ready(function () {
             type : 'POST',
             dataType : 'json',
             success : function(data){
-                window.location.href = "index.html";
+                window.open("index.html");
             }
         });
     });
