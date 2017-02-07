@@ -2,8 +2,8 @@
 
 session_start();
 
-$nombre = $_POST["nombre"];
-$password = $_POST["password"];
+$nombre = $_GET["nombre"];
+$password = $_GET["password"];
 
 $connect = mysqli_connect("localhost","root","","jurassicpets");
 

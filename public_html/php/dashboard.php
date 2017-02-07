@@ -1,0 +1,11 @@
+<?php
+//session.start();
+//if(isset($SESSION['usuario'])){
+?>
+<html>
+    <head></head>
+    <body><p>OK</p></body>
+</html>
+<?php
+//}
+?>
