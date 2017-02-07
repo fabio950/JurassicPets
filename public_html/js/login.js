@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     $('#login-form-link').click(function (e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
@@ -7,7 +7,7 @@ $(document).ready(function () {
         $(this).addClass('active');
         e.preventDefault();
     });
-    
+
     $('#register-form-link').click(function (e) {
         $("#register-form").delay(100).fadeIn(100);
         $("#login-form").fadeOut(100);
@@ -39,9 +39,9 @@ $(document).ready(function () {
             url: "../php/login.php",
             data: {nombre: nombre, password: password},
             success: function (data) {
-                if(data === "1"){
+                if (data === "1") {
                     location.href = "../php/dashboard.php";
-                }else{
+                } else {
                     alert("ERROR");
                 }
             }
