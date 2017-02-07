@@ -1,9 +1,8 @@
 <?php
-
 session_start();
 
-$nombre = $_GET["nombre"];
-$password = $_GET["password"];
+$nombre = $_POST["nombre"];
+$password = $_POST["password"];
 
 $connect = mysqli_connect("localhost","root","","jurassicpets");
 
@@ -20,5 +19,4 @@ if ($num_row == "1") {
 }
 
 $connect->close();
-
 ?>

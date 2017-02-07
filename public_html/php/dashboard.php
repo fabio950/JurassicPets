@@ -4,7 +4,7 @@
 ?>
 <html>
     <head></head>
-    <body><p>OK</p></body>
+    <body><p>OK dashboard</p></body>
 </html>
 <?php
 //}

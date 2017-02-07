@@ -1,6 +1,5 @@
 $(document).ready(function () {
     
-      
     $('#login-form-link').click(function (e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
@@ -8,6 +7,7 @@ $(document).ready(function () {
         $(this).addClass('active');
         e.preventDefault();
     });
+    
     $('#register-form-link').click(function (e) {
         $("#register-form").delay(100).fadeIn(100);
         $("#login-form").fadeOut(100);
@@ -20,14 +20,13 @@ $(document).ready(function () {
         var nombre = $('#nombre').val();
         var password = $('#password').val();
         var role = $('#role').val();
-        var data = {nombre: nombre, password: password, role: role};
         $.ajax({
             type: 'POST',
-            data: data,
-            url: 'php/registrar.php',
-            dataType: 'json',
+            url: '../php/registrar.php',
+            data: {nombre: nombre, password: password, role: role},
+//            dataType: 'json',
             success: function (data) {
-
+                location.href = "../php/dashboard.php";
             }
         });
     });
@@ -36,19 +35,16 @@ $(document).ready(function () {
         nombre = $('#nombreLogin').val();
         password = $('#passwordLogin').val();
         $.ajax({
-            url: '../php/login.php?nombre=' + nombre + '&password=' + password,
-            type: 'GET',
-            //dataType: 'json',
+            type: "POST",
+            url: "../php/login.php",
+            data: {nombre: nombre, password: password},
             success: function (data) {
-                if (data === "1") {
+                if(data === "1"){
                     location.href = "../php/dashboard.php";
+                }else{
+                    alert("ERROR");
                 }
-                
-              
             }
         });
-         alert ("Ajax");
-//         alert(location.href);
-//         location.href = "./php/hola.php";
     });
 });

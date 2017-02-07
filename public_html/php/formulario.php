@@ -1,9 +1,5 @@
+<?php @session_start(); ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -12,16 +8,14 @@ and open the template in the editor.
 
         <!-- CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/login.css" rel="stylesheet" type="text/css"/>
-        <link href="css/registrar.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/registrar.css" rel="stylesheet" type="text/css"/>
 
         <!-- JS -->
-        <script type="text/javascript" src="js/jquery.min.js.descarga"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js.descarga"></script>
-        <script src="js/login.js" type="text/javascript"></script>
-
-
+        <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js.descarga"></script>
+        <script src="../js/login.js" type="text/javascript"></script>
 
     </head>
     <body>
@@ -43,13 +37,13 @@ and open the template in the editor.
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="login-form" method="post" role="form" style="display: block;">
+                                    <form id="login-form" style="display: block;" action="login.php">
                                         <div class="form-group">
                                             <label for="nombre" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="nombreLogin" id="nombreLogin"  placeholder="Introduce tu nombre"/>
+                                                    <input type="text" class="form-control" name="nombre" id="nombreLogin"  placeholder="Introduce tu nombre"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,19 +52,19 @@ and open the template in the editor.
                                             <div class="cols-sm-10">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                    <input type="password" class="form-control" name="passwordLogin" id="passwordLogin"  placeholder="Introduce tu contraseña"/>
+                                                    <input type="password" class="form-control" name="password" id="passwordLogin"  placeholder="Introduce tu contraseña"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input name="submit" type="submit" id="btnLogin" class="btn btn-primary btn-lg btn-block login-button button" value="Iniciar sesión"/>
+                                                    <input name="submit" type="button" id="btnLogin" class="btn btn-primary btn-lg btn-block login-button button" value="Iniciar sesión"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="register-form" method="post" role="form" style="display: none;">
+                                    <form id="register-form" style="display: none;" action="registrar.php">
                                         <div class="form-group">
                                             <label for="nombre" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
@@ -103,7 +97,7 @@ and open the template in the editor.
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input name="submit" type="submit" id="btnRegistrar" class="btn btn-primary btn-lg btn-block login-button button" value="Registrarse"/>
+                                                    <input name="submit" type="button" id="btnRegistrar" class="btn btn-primary btn-lg btn-block login-button button" value="Registrarse"/>
                                                 </div>
                                             </div>
                                         </div>
