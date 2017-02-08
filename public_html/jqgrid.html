@@ -77,7 +77,79 @@ and open the template in the editor.
                     <div class="modal-footer">
                         <div class="btn-group">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-default" id="btn_comprarCarrito" data-dismiss="modal" >Finalizar compra</button>
+                            <button type="button" class="btn btn-default" id="btn_comprarCarrito" data-dismiss="modal" >Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal USUARIO-->
+        <div class="modal fade" id="modalUsuario" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="modal-title">Ventana Modal</h4>
+                    </div>
+                    <div class="modal-body" id="modalCarritoBody">
+                        <div class="row">
+                            <form class="col-md-12">
+                                <div class="row">
+                                    <div class="input-field col-md-12">
+                                        <input placeholder="Introduce un nombre" id="inpNombreUsr" type="text">
+                                        <label class="active">Nombre</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col-md-12">
+                                        <input  placeholder="Introduce un password" id="inpPassword" type="text">
+                                        <label class="active">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col-md-12">
+                                        <input  placeholder="Introduce un email" id="inpEmail" type="text">
+                                        <label class="active">email</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-default" id="btn_aceptarUsuario" data-dismiss="modal" >Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- Modal PEDIDOS (fixear duplicados usando este modal para pedidos)-->
+        <div class="modal fade" id="modalPedido" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="modal-title">Ventana Modal</h4>
+                    </div>
+                    <div class="modal-body" id="modalCarritoBody">
+                        <div class="row">
+                            <form class="col-md-12">
+                                <div class="row">
+                                    <div class="input-field col-md-12">
+                                        <input placeholder="Introduce una fecha" id="inpFecha" type="text">
+                                        <label class="active">Fecha</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-default" id="btn_aceptarPedido" data-dismiss="modal" >Aceptar</button>
                         </div>
                     </div>
                 </div>
