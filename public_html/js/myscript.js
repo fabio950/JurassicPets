@@ -78,7 +78,7 @@ $(document).ready(function () {
             success: function (datos) {
                 $.each(datos, function (index, value) {
                     articulo = "<div class='col-md-4'>" +
-                            "<div class='card hoverable'>" +
+                            "<div class='card hoverable animated bounce'>" +
                             "<div class='card-image'>" +
                             "<img src='img/" + value.imagen + "'>" +
                             "</div>" +
@@ -146,6 +146,7 @@ $(document).ready(function () {
     });
 
     $('#btn_carrito').click(function () {
+        $('#modalCarrito').addClass('animated bounce');
         $("#modalCarritoBody").children().remove();
         $('#modal-title').text("Nº Pedido: " + miCarrito.numero + ", Fecha: " + miCarrito.fecha);
         
