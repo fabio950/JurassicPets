@@ -1,0 +1,12 @@
+<?php
+session.start();
+if(isset($_SESSION['usuario'])) {
+?>
+
+//HTML ETC
+
+<?php
+} else {
+//REDIRIGIR A login.php
+}
+?>
