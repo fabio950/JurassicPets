@@ -1,7 +1,5 @@
 $(document).ready(function () {
     var opc;
-    var idCat;
-    var nombreCat;
     var url;
     var idPed;
     var fechaPed;
@@ -22,40 +20,55 @@ $(document).ready(function () {
     })();
 
     //CATEGORIAS
-    $('#btn_cat').click(function () {
-        $('#btn_art').removeClass("active");
-        $('#btn_cat').addClass("active");
-        $('#btn_ped').removeClass("active");
-        $('#btn_usr').removeClass("active");
+    $('#btnCategoria').click(function () {
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
-        links = "<a id='btn_crear' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Crear</a> " +
-                "<a id='btn_modificar' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Modificar</a> " +
-                "<a id='btn_eliminar' href='javascript:void(0)'>Eliminar</a>";
+        links = "<a id='btnCrearCategoria' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Crear</a> " +
+                "<a id='btnModificarCategoria' href='javascript:void(0)'>Modificar</a> " +
+                "<a id='btnEliminarCategoria' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
         $("#capaJqgrid").append(links);
 
-        $("#btn_crear").click(function () {
+        jQuery("#tbltareas").jqGrid({
+            url: 'php/lista_categorias.php',
+            datatype: 'json',
+            mtype: 'POST',
+            colNames: ['Id', 'Nombre'],
+            colModel: [
+                {name: 'id', index: 'id', width: 50},
+                {name: 'nombre', index: 'nombre', width: 200}
+            ],
+            pager: '#paginacion',
+            rowNum: 10,
+            rowList: [15, 30],
+            sortname: 'id',
+            sortorder: 'asc',
+            viewrecords: true,
+            caption: 'Listado de Categorías'
+        });
+
+        $("#btnCrearCategoria").click(function () {
             opc = 1;
         });
 
-        $("#btn_modificar").click(function () {
+        $("#btnModificarCategoria").click(function () {
             opc = 2;
 
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
+                $("#modalCategoria").modal("show");
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
                 idCat = ret.id;
                 nombreCat = ret.nombre;
 
-                $("#inpId").val(idCat);
-                $("#inpNombre").val(nombreCat);
+                $("#inpIdCategoria").val(idCat);
+                $("#inpNombreCategoria").val(nombreCat);
             } else {
                 alert("Please select row");
             }
         });
 
-        $("#btn_eliminar").click(function () {
+        $("#btnEliminarCategoria").click(function () {
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
@@ -74,89 +87,33 @@ $(document).ready(function () {
             }
         });
 
-        $("#btn_comprarCarrito").click(function () {
-            nombreCat = $("#inpNombre").val();
-            alert("hola desde categorias");
+        $("#btnAceptarCategoria").click(function () {
             if (opc === 1) {
                 url = "php/crear_categoria.php";
             } else if (opc === 2) {
                 url = "php/update_categoria.php";
             }
-
-            var data = {
-                "id": idCat,
-                "nombre": nombreCat
-            };
-
+            
             $.ajax({
                 type: 'POST',
-                data: data,
+                data: $("#formCategoria").serialize(),
                 url: url,
                 success: function (data) {
                     $("#tbltareas").trigger("reloadGrid");
                 }
             });
         });
-
-        jQuery("#tbltareas").jqGrid({
-            url: 'php/lista_categorias.php',
-            datatype: 'json',
-            mtype: 'POST',
-            colNames: ['Id', 'Nombre'],
-            colModel: [
-                {name: 'id', index: 'id', width: 50},
-                {name: 'nombre', index: 'nombre', width: 200}
-            ],
-            pager: '#paginacion',
-            rowNum: 10,
-            rowList: [15, 30],
-            sortname: 'id',
-            sortorder: 'asc',
-            viewrecords: true,
-            caption: 'Listado de Categorias'
-        });
     });
 
     //ARTICULOS
-    $('#btn_art').click(function () {
-        $('#btn_art').addClass("active");
-        $('#btn_cat').removeClass("active");
-        $('#btn_ped').removeClass("active");
-        $('#btn_usr').removeClass("active");
+    $('#btnArticulo').click(function () {
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
-        links = "<a id='btn_crear' href='javascript:void(0)'>Crear</a> " +
-                "<a id='btn_modificar' href='javascript:void(0)' id='btn_modificar'>Modificar</a> " +
-                "<a id='btn_eliminar' href='javascript:void(0)'>Eliminar</a>";
+        links = "<a id='btnCrearArticulo' href='javascript:void(0)' data-toggle='modal' data-target='#modalArticulo'>Crear</a> " +
+                "<a id='btnModificarArticulo' href='javascript:void(0)'>Modificar</a> " +
+                "<a id='btnEliminarArticulo' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
         $("#capaJqgrid").append(links);
-
-        $("#btn_crear").click(function() {
-            opc = 1;
-        });
-        
-        $("#btn_modificar").click(function() {
-            opc = 2;
-        });
-
-        $("#btn_eliminar").click(function() {
-            var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
-            if (id) {
-                var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
-                idArt = ret.id;
-                
-                $.ajax({
-                    type: 'POST',
-                    data: 'id=' + idArt,
-                    url: 'php/delete_articulo.php',
-                    success: function(data){
-                        $("#tbltareas").trigger("reloadGrid");
-                    }
-                });
-            } else {
-                alert("Please select row");
-            }
-        });
 
         jQuery("#tbltareas").jqGrid({
             url: 'php/lista_articulos.php',
@@ -178,6 +135,71 @@ $(document).ready(function () {
             sortorder: 'asc',
             viewrecords: true,
             caption: 'Listado de Artículos'
+        });
+
+        $("#btnCrearArticulo").click(function() {
+            opc = 1;
+        });
+        
+        $("#btnModificarArticulo").click(function() {
+            opc = 2;
+
+            var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
+            if (id) {
+                $("#modalArticulo").modal("show");
+                var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
+                idArt = ret.id;
+                nombreArt = ret.nombre;
+                descripcionArt = ret.descripcion;
+                imagenArt = ret.imagen;
+                precioArt = ret.precio;
+                categoriaArt = ret.categoria;
+                
+                $("#inpIdArticulo").val(idArt);
+                $("#inpNombreArticulo").val(nombreArt);
+                $("#inpDescripcionArticulo").val(descripcionArt);
+                $("#inpImagenArticulo").val(imagenArt);
+                $("#inpPrecioArticulo").val(precioArt);
+                $("#inpCategoriaArticulo").val(categoriaArt);
+            } else {
+                alert("Please select row");
+            }
+        });
+
+        $("#btnEliminarArticulo").click(function() {
+            var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
+            if (id) {
+                var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
+                idArt = ret.id;
+                
+                $.ajax({
+                    type: 'POST',
+                    data: 'id=' + idArt,
+                    url: 'php/delete_articulo.php',
+                    success: function(data){
+                        $("#tbltareas").trigger("reloadGrid");
+                    }
+                });
+            } else {
+                alert("Please select row");
+            }
+        });
+        
+        $("#btnAceptarArticulo").click(function () {
+            if (opc === 1) {
+                url = "php/crear_articulo.php";
+            } else if (opc === 2) {
+                url = "php/update_articulo.php";
+            }
+            
+            $.ajax({
+                type: 'POST',
+                data: $("#formArticulo").serialize(),
+                url: url,
+                success: function (data) {
+                    $("#tbltareas").trigger("reloadGrid");
+                }
+            });
         });
     });
 

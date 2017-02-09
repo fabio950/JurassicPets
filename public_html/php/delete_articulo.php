@@ -1,13 +1,13 @@
 <?php
 
-$id = $_POST["id"];
+$id = (int) $_POST["id"];
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 
-$sql = "DELETE FROM articulo WHERE id='".$id."'";
+$sql = "DELETE FROM articulo WHERE id=".$id."";
 
-$con->query($sql);
+mysqli_query($con, $sql);
 
-$con->close();
+mysqli_close($con);
 
 ?>

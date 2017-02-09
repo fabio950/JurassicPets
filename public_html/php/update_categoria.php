@@ -1,14 +1,15 @@
 <?php
 
-$id = $_POST["id"];
+$id = (int) $_POST["id"];
 $nombre = $_POST["nombre"];        
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
+mysqli_set_charset($con, "utf8");
 
 $sql = "UPDATE categoria SET nombre='".$nombre."' WHERE id=".$id."";
 
-$con->query($sql);
+mysqli_query($con, $sql);
 
-$con->close();
+mysqli_close($con);
 
 ?>

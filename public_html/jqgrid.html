@@ -35,8 +35,8 @@ and open the template in the editor.
         <div class="container">
             <div class="col-md-3">
                 <div class="collection">
-                    <a id="btn_cat" href="javascript:void(0)" class="collection-item">Categorías</a>
-                    <a id="btn_art" href="javascript:void(0)" class="collection-item">Artículos</a>
+                    <a id="btnCategoria" href="javascript:void(0)" class="collection-item">Categorías</a>
+                    <a id="btnArticulo" href="javascript:void(0)" class="collection-item">Artículos</a>
                     <a id="btn_ped" href="javascript:void(0)" class="collection-item">Pedidos</a>
                     <a id="btn_usr" href="javascript:void(0)" class="collection-item">Usuarios</a>
                 </div>
@@ -46,28 +46,23 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalCategoria" role="dialog">
+        
+        <!-- Modal CATEGORÍA -->
+        <div id="modalCategoria" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="modal-title">Ventana Modal</h4>
+                        <h4 class="modal-title">Ventana Modal</h4>
                     </div>
-                    <div class="modal-body" id="modalCarritoBody">
+                    <div class="modal-body">
                         <div class="row">
-                            <form class="col-md-12">
-                                <!--
+                            <form id="formCategoria" class="col-md-12">
                                 <div class="row">
                                     <div class="input-field col-md-12">
-                                        <input  placeholder="Introduce un ID" id="inpId" type="text">
-                                        <label class="active">ID</label>
-                                    </div>
-                                </div>
-                                -->
-                                <div class="row">
-                                    <div class="input-field col-md-12">
-                                        <input placeholder="Introduce un nombre" id="inpNombre" type="text">
+                                        <input id="inpIdCategoria" name="id" type="hidden">
+                                        <input id="inpNombreCategoria" name="nombre" placeholder="Introduce un nombre" type="text">
                                         <label class="active">Nombre</label>
                                     </div>
                                 </div>
@@ -76,13 +71,62 @@ and open the template in the editor.
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
+                            <button id="btnAceptarCategoria" type="button" class="btn btn-default" data-dismiss="modal" >Aceptar</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-default" id="btn_comprarCarrito" data-dismiss="modal" >Aceptar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Modal ARTÍCULO -->
+        <div id="modalArticulo" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Ventana Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form id="formArticulo" class="col-md-12">
+                                <div class="row">
+                                    <div class="input-field col-md-12">
+                                        <input id="inpIdArticulo" name="id" type="hidden">
+                                        <input id="inpNombreArticulo" name="nombre" placeholder="Introduce un nombre" type="text">
+                                        <label class="active">Nombre</label>
+                                    </div>
+                                    <div class="input-field col-md-12">
+                                        <input id="inpDescripcionArticulo" name="descripcion" placeholder="Introduce una descripción" type="text">
+                                        <label class="active">Descripción</label>
+                                    </div>
+                                    <div class="input-field col-md-12">
+                                        <input id="inpImagenArticulo" name="imagen" placeholder="Introduce una ruta de imagen" type="text">
+                                        <label class="active">Ruta imagen</label>
+                                    </div>
+                                    <div class="input-field col-md-12">
+                                        <input id="inpPrecioArticulo" name="precio" placeholder="Introduce un precio" type="number">
+                                        <label class="active">Precio</label>
+                                    </div>
+                                    <div class="input-field col-md-12">
+                                        <input id="inpCategoriaArticulo" name="categoria" placeholder="Introduce un id de categoría" type="number">
+                                        <label class="active">Categoría</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button id="btnAceptarArticulo" type="button" class="btn btn-default" data-dismiss="modal" >Aceptar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Modal USUARIO-->
         <div class="modal fade" id="modalUsuario" role="dialog">
             <div class="modal-dialog">

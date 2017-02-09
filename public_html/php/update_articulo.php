@@ -1,18 +1,18 @@
 <?php
 
-$id = $_POST["id"];
+$id = (int) $_POST["id"];
 $nombre = $_POST["nombre"];
 $descripcion = $_POST["descripcion"];
 $imagen = $_POST["imagen"];
-$precio = $_POST["precio"];
-$categoria = $_POST["categoria"];       
+$precio = (float) $_POST["precio"];
+$categoria = (int) $_POST["categoria"];       
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 
 $sql = "UPDATE articulo SET nombre='".$nombre."', descripcion='".$descripcion."', imagen='".$imagen."', precio=".$precio.", categoria=".$categoria." WHERE id=".$id."";
 
-$con->query($sql);
+mysqli_query($con, $sql);
 
-$con->close();
+mysqli_close($con);
 
 ?>

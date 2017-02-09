@@ -1,18 +1,19 @@
 <?php
 
-$id = $_POST["id"];
+$id = (int) $_POST["id"];
 $nombre = $_POST["nombre"];
 $descripcion = $_POST["descripcion"];
 $imagen = $_POST["imagen"];
-$precio = $_POST["precio"];
-$categoria = $_POST["categoria"];
+$precio = (float) $_POST["precio"];
+$categoria = (int) $_POST["categoria"];
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
+mysqli_set_charset($con, "utf8");
 
 $sql = "INSERT INTO articulo VALUES (null, '".$nombre."', '".$descripcion."', '".$imagen."', ".$precio.", ".$categoria.")";
 
-$con->query($sql);
+mysqli_query($con, $sql);
 
-$con->close();
+mysqli_close($con);
 
 ?>
