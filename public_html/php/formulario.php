@@ -86,11 +86,11 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="rol" class="cols-sm-2 control-label">Rol</label>
+                                            <label for="email" class="cols-sm-2 control-label">Email</label>
                                             <div class="cols-sm-10">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="role" id="role"  placeholder="Introduce tu rol"/>
+                                                    <input type="email" class="form-control" name="email" id="email"  placeholder="Introduce tu email"/>
                                                 </div>
                                             </div>
                                         </div>

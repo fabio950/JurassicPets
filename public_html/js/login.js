@@ -19,14 +19,14 @@ $(document).ready(function () {
     $('#btnRegistrar').click(function () {
         var nombre = $('#nombre').val();
         var password = $('#password').val();
-        var role = $('#role').val();
+        var email = $('#email').val();
         $.ajax({
             type: 'POST',
             url: '../php/registrar.php',
-            data: {nombre: nombre, password: password, role: role},
+            data: {nombre: nombre, password: password, email: email},
 //            dataType: 'json',
             success: function (data) {
-                location.href = "../php/dashboard.php";
+                location.href = "../index.html";
             }
         });
     });
@@ -40,7 +40,7 @@ $(document).ready(function () {
             data: {nombre: nombre, password: password},
             success: function (data) {
                 if (data === "1") {
-                    location.href = "../php/dashboard.php";
+                    location.href = "../index.html";
                 } else {
                     alert("ERROR");
                 }
