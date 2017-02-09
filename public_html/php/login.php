@@ -14,6 +14,7 @@ $num_row = mysqli_num_rows($result);
 if ($num_row == "1") {
     $data = mysqli_fetch_array($result);
     $_SESSION["usuario"] = $data["nombre"];
+    $_SESSION["role"] = $data["role"];
     echo "1";
 } else {
     echo "error";

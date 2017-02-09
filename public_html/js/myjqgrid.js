@@ -64,7 +64,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'POST',
                     data: 'id=' + idCat,
-                    url: 'php/delete_categoria.php',
+                    url: '../php/delete_categoria.php',
                     success: function (data) {
                         $("#tbltareas").trigger("reloadGrid");
                     }
@@ -78,9 +78,9 @@ $(document).ready(function () {
             nombreCat = $("#inpNombre").val();
             alert("hola desde categorias");
             if (opc === 1) {
-                url = "php/crear_categoria.php";
+                url = "../php/crear_categoria.php";
             } else if (opc === 2) {
-                url = "php/update_categoria.php";
+                url = "../php/update_categoria.php";
             }
 
             var data = {
@@ -99,7 +99,7 @@ $(document).ready(function () {
         });
 
         jQuery("#tbltareas").jqGrid({
-            url: 'php/lista_categorias.php',
+            url: '../php/lista_categorias.php',
             datatype: 'json',
             mtype: 'POST',
             colNames: ['Id', 'Nombre'],
@@ -148,7 +148,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'POST',
                     data: 'id=' + idArt,
-                    url: 'php/delete_articulo.php',
+                    url: '../php/delete_articulo.php',
                     success: function(data){
                         $("#tbltareas").trigger("reloadGrid");
                     }
@@ -159,7 +159,7 @@ $(document).ready(function () {
         });
 
         jQuery("#tbltareas").jqGrid({
-            url: 'php/lista_articulos.php',
+            url: '../php/lista_articulos.php',
             datatype: 'json',
             mtype: 'POST',
             colNames: ['Id', 'Nombre', 'Descripción', 'Imagen', 'Precio', 'Categoria'],
@@ -224,7 +224,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'POST',
                     data: 'id=' + idPed,
-                    url: 'php/delete_pedido.php',
+                    url: '../php/delete_pedido.php',
                     success: function (data) {
                         $("#tbltareas").trigger("reloadGrid");
                     }
@@ -238,9 +238,9 @@ $(document).ready(function () {
             fechaPed = $("#inpFecha").val();
 
             if (opc === 1) {
-                url = "php/crear_pedido.php";
+                url = "../php/crear_pedido.php";
             } else if (opc === 2) {
-                url = "php/update_pedido.php";
+                url = "../php/update_pedido.php";
             }
 
             var data = {
@@ -259,7 +259,7 @@ $(document).ready(function () {
         });
 
         jQuery("#tbltareas").jqGrid({
-            url: 'php/lista_pedidos.php',
+            url: '../php/lista_pedidos.php',
             datatype: 'json',
             mtype: 'POST',
             colNames: ['Id', 'Fecha'],
@@ -323,7 +323,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'POST',
                     data: 'id=' + idUsr,
-                    url: 'php/delete_usuario.php',
+                    url: '../php/delete_usuario.php',
                     success: function (data) {
                         $("#tbltareas").trigger("reloadGrid");
                     }
@@ -339,9 +339,9 @@ $(document).ready(function () {
             emailUsr = $("#inpEmail").val();
 
             if (opc === 1) {
-                url = "php/crear_usuario.php";
+                url = "../php/crear_usuario.php";
             } else if (opc === 2) {
-                url = "php/update_usuario.php";
+                url = "../php/update_usuario.php";
             }
 
             var data = {
@@ -362,7 +362,7 @@ $(document).ready(function () {
         });
 
         jQuery("#tbltareas").jqGrid({
-            url: 'php/lista_usuarios.php',
+            url: '../php/lista_usuarios.php',
             datatype: 'json',
             mtype: 'POST',
             colNames: ['Id', 'Nombre', 'Password', 'Email'],

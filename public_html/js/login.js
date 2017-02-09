@@ -26,7 +26,7 @@ $(document).ready(function () {
             data: {nombre: nombre, password: password, email: email},
 //            dataType: 'json',
             success: function (data) {
-                location.href = "../index.html";
+                location.href = "../index.php";
             }
         });
     });
@@ -40,7 +40,7 @@ $(document).ready(function () {
             data: {nombre: nombre, password: password},
             success: function (data) {
                 if (data === "1") {
-                    location.href = "../index.html";
+                    location.href = "../index.php";
                 } else {
                     alert("ERROR");
                 }
