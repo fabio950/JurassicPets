@@ -1,5 +1,0 @@
-
-//Forms
-data: $("#miFom").serialize();
-
-$nombre = $_POST ["nombreInput"];

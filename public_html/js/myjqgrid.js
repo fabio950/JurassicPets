@@ -21,6 +21,7 @@ $(document).ready(function () {
 
     //CATEGORIAS
     $('#btnCategoria').click(function () {
+        pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btnCrearCategoria' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Crear</a> " +
@@ -35,8 +36,8 @@ $(document).ready(function () {
             mtype: 'POST',
             colNames: ['Id', 'Nombre'],
             colModel: [
-                {name: 'id', index: 'id', width: 50},
-                {name: 'nombre', index: 'nombre', width: 200}
+                {name: 'id', index: 'id', width: 40},
+                {name: 'nombre', index: 'nombre', width: 150}
             ],
             pager: '#paginacion',
             rowNum: 10,
@@ -64,7 +65,7 @@ $(document).ready(function () {
                 $("#inpIdCategoria").val(idCat);
                 $("#inpNombreCategoria").val(nombreCat);
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
 
@@ -83,7 +84,7 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
 
@@ -107,6 +108,7 @@ $(document).ready(function () {
 
     //ARTICULOS
     $('#btnArticulo').click(function () {
+        pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btnCrearArticulo' href='javascript:void(0)' data-toggle='modal' data-target='#modalArticulo'>Crear</a> " +
@@ -121,8 +123,8 @@ $(document).ready(function () {
             mtype: 'POST',
             colNames: ['Id', 'Nombre', 'Descripción', 'Imagen', 'Precio', 'Categoria'],
             colModel: [
-                {name: 'id', index: 'id', width: 50},
-                {name: 'nombre', index: 'nombre', width: 100},
+                {name: 'id', index: 'id', width: 40},
+                {name: 'nombre', index: 'nombre', width: 150},
                 {name: 'descripcion', index: 'descripcion', width: 300},
                 {name: 'imagen', index: 'imagen', width: 100},
                 {name: 'precio', index: 'precio', width: 100},
@@ -162,7 +164,7 @@ $(document).ready(function () {
                 $("#inpPrecioArticulo").val(precioArt);
                 $("#inpCategoriaArticulo").val(categoriaArt);
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
 
@@ -181,7 +183,7 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
         
@@ -205,10 +207,7 @@ $(document).ready(function () {
 
     //PEDIDOS
     $('#btn_ped').click(function () {
-        $('#btn_art').removeClass("active");
-        $('#btn_cat').removeClass("active");
-        $('#btn_ped').addClass("active");
-        $('#btn_usr').removeClass("active");
+        pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btn_crear' href='javascript:void(0)' data-toggle='modal' data-target='#modalPedido'>Crear</a> " +
@@ -301,10 +300,7 @@ $(document).ready(function () {
 
     //USUARIOS
     $('#btn_usr').click(function () {
-        $('#btn_art').removeClass("active");
-        $('#btn_cat').removeClass("active");
-        $('#btn_ped').removeClass("active");
-        $('#btn_usr').addClass("active");
+        pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btn_crear' href='javascript:void(0)' data-toggle='modal' data-target='#modalUsuario'>Crear</a> " +
@@ -404,3 +400,8 @@ $(document).ready(function () {
         });
     });
 });
+
+function pintarItemActivo(idItemActivo) {
+    $("#linksCrud").children().removeClass("active");
+    $("#" + idItemActivo).addClass("active");
+} 
