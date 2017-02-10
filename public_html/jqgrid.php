@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['usuario'])){
+    if(isset($_SESSION['role'])){
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -223,3 +228,7 @@ and open the template in the editor.
     </body>
 
 </html>
+<?php
+    }
+}header('Location: index.php');
+?>
