@@ -38,9 +38,9 @@ and open the template in the editor.
         <script type="text/javascript" src="js/mdb.js.descarga"></script>
 
         <script type="text/javascript" src="js/myscript.js"></script>
-        
+
         <script src="js/clases.js" type="text/javascript"></script>
-        
+
         <link href="css/animate.css" rel="stylesheet" type="text/css"/>
     </head>
 
@@ -64,7 +64,23 @@ and open the template in the editor.
                         </div>
                         <div class="btn" id="btn_carrito" data-toggle='modal' data-target='#modalCarrito'><img src="img/cart.png" alt="" style="height: 20px; width: 20px;"/>
                         </div>
-                        <a href="jqgrid.html" class="white-text"><i class="fa fa-cog"> </i></a>
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['usuario'])) {
+                            if (isset($_SESSION['role'])) {
+                                ?>
+                                <a href="jqgrid.php" class="white-text"><i class="fa fa-cog"> </i></a>
+                                <?php
+                            }
+                            ?>
+                            <a href="php/logout.php" class="white-text"><i class="fa fa-sign-out fa-fw"></i></a>
+                            <?php
+                        } else {
+                            ?>
+                            <a href="php/formulario.php" class="white-text"><i class="fa fa-sign-in fa-fw"></i></a>
+                            <?php
+                        }
+                        ?>
                     </form>
 
                 </div>
