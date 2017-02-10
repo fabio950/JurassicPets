@@ -6,7 +6,7 @@ $email = $_POST["email"];
 
 $con = mysqli_connect("localhost", "root", "", "jurassicpets");
 
-$sql = "INSERT INTO usuarios VALUES (null, '".$nombre."', '".$password."', '".$email."')";
+$sql = "INSERT INTO usuarios VALUES (null, '".$nombre."', '".$password."', '".$email."', null)";
 
 $con->query($sql);
 
