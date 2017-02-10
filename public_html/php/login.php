@@ -5,11 +5,11 @@ session_start();
 $nombre = $_POST["nombre"];
 $password = $_POST["password"];
 
-$connect = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
 
 
 $sql = "SELECT * FROM usuarios WHERE nombre='$nombre' AND password='$password'";
-$result = mysqli_query($connect, $sql);
+$result = mysqli_query($con, $sql);
 $num_row = mysqli_num_rows($result);
 if ($num_row == "1") {
     $data = mysqli_fetch_array($result);
@@ -20,5 +20,5 @@ if ($num_row == "1") {
     echo "error";
 }
 
-$connect->close();
+mysqli_close($con);
 ?>

@@ -24,9 +24,12 @@ $(document).ready(function () {
             type: 'POST',
             url: '../php/registrar.php',
             data: {nombre: nombre, password: password, email: email},
-//            dataType: 'json',
             success: function (data) {
-                location.href = "../index.php";
+                if (data === "1") {
+                    location.href = "../index.php";
+                } else {
+                    alert(data);
+                }
             }
         });
     });
