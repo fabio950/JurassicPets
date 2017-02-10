@@ -55,7 +55,7 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img height="60" width="300" src="img/logo-pag.gif" />
+                    <a href="index.php"><img height="60" width="300" src="img/logo-pag.gif" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form navbar-right waves-effect waves-light" role="search">

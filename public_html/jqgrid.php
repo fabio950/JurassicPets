@@ -31,7 +31,7 @@ and open the template in the editor.
     </head>
     <body>
         <nav class="navbar z-depth-2 primary-color">
-
+            <a href="index.php"><img height="60" width="300" src="img/logo-pag.gif" /></a>
         </nav>
         <div class="container">
             <div class="col-md-3">

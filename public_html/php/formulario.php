@@ -7,10 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/login.css" rel="stylesheet" type="text/css"/>
         <link href="../css/registrar.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- JS -->
         <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
@@ -109,5 +109,32 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Modal ERROR -->
+        <div id="modalErrorLogin" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div id="card-alert" class="modal-content alert alert-danger">
+                    <div class="card-content white-text">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p><i class="fa fa-warning"></i> Datos incorrectos</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <!-- Modal ERROR -->
+        <div id="modalErrorRegistro" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div id="card-alert" class="modal-content alert alert-danger">
+                    <div class="card-content white-text">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p><i class="fa fa-warning"></i> Usuario ya registrado</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
     </body>
 </html>

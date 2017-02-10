@@ -35,7 +35,7 @@ $(document).ready(function () {
                 if (data === "1") {
                     location.href = "../index.php";
                 } else {
-                    alert(data);
+                    $("#modalErrorRegistro").modal("show");
                 }
             }
         });
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 if (data === "1") {
                     location.href = "../index.php";
                 } else {
-                    alert("ERROR");
+                    $("#modalErrorLogin").modal("show");
                 }
             }
         });
