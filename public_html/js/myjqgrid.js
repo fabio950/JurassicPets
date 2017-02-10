@@ -23,12 +23,11 @@ $(document).ready(function () {
     $('#btnCategoria').click(function () {
         pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
-        tabla = "<table id='tbltareas'></table>";
-        links = "<a id='btnCrearCategoria' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Crear</a> " +
+        tabla = "<table id='tbltareas'></table>" +
+                "<a id='btnCrearCategoria' href='javascript:void(0)' data-toggle='modal' data-target='#modalCategoria'>Crear</a> " +
                 "<a id='btnModificarCategoria' href='javascript:void(0)'>Modificar</a> " +
                 "<a id='btnEliminarCategoria' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
-        $("#capaJqgrid").append(links);
 
         jQuery("#tbltareas").jqGrid({
             url: 'php/lista_categorias.php',
@@ -87,22 +86,22 @@ $(document).ready(function () {
                 $("#modalError").modal("show");
             }
         });
+    });
 
-        $("#btnAceptarCategoria").click(function () {
-            if (opc === 1) {
-                url = "php/crear_categoria.php";
-            } else if (opc === 2) {
-                url = "php/update_categoria.php";
+    $("#btnAceptarCategoria").click(function () {
+        if (opc === 1) {
+            url = "php/crear_categoria.php";
+        } else if (opc === 2) {
+            url = "php/update_categoria.php";
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: $("#formCategoria").serialize(),
+            url: url,
+            success: function (data) {
+                $("#tbltareas").trigger("reloadGrid");
             }
-            
-            $.ajax({
-                type: 'POST',
-                data: $("#formCategoria").serialize(),
-                url: url,
-                success: function (data) {
-                    $("#tbltareas").trigger("reloadGrid");
-                }
-            });
         });
     });
 
@@ -139,11 +138,11 @@ $(document).ready(function () {
             caption: 'Listado de Artículos'
         });
 
-        $("#btnCrearArticulo").click(function() {
+        $("#btnCrearArticulo").click(function () {
             opc = 1;
         });
-        
-        $("#btnModificarArticulo").click(function() {
+
+        $("#btnModificarArticulo").click(function () {
             opc = 2;
 
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
@@ -156,7 +155,7 @@ $(document).ready(function () {
                 imagenArt = ret.imagen;
                 precioArt = ret.precio;
                 categoriaArt = ret.categoria;
-                
+
                 $("#inpIdArticulo").val(idArt);
                 $("#inpNombreArticulo").val(nombreArt);
                 $("#inpDescripcionArticulo").val(descripcionArt);
@@ -168,17 +167,17 @@ $(document).ready(function () {
             }
         });
 
-        $("#btnEliminarArticulo").click(function() {
+        $("#btnEliminarArticulo").click(function () {
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
                 idArt = ret.id;
-                
+
                 $.ajax({
                     type: 'POST',
                     data: 'id=' + idArt,
                     url: 'php/delete_articulo.php',
-                    success: function(data){
+                    success: function (data) {
                         $("#tbltareas").trigger("reloadGrid");
                     }
                 });
@@ -186,22 +185,22 @@ $(document).ready(function () {
                 $("#modalError").modal("show");
             }
         });
-        
-        $("#btnAceptarArticulo").click(function () {
-            if (opc === 1) {
-                url = "php/crear_articulo.php";
-            } else if (opc === 2) {
-                url = "php/update_articulo.php";
+    });
+
+    $("#btnAceptarArticulo").click(function () {
+        if (opc === 1) {
+            url = "php/crear_articulo.php";
+        } else if (opc === 2) {
+            url = "php/update_articulo.php";
+        }
+
+        $.ajax({
+            type: 'POST',
+            data: $("#formArticulo").serialize(),
+            url: url,
+            success: function (data) {
+                $("#tbltareas").trigger("reloadGrid");
             }
-            
-            $.ajax({
-                type: 'POST',
-                data: $("#formArticulo").serialize(),
-                url: url,
-                success: function (data) {
-                    $("#tbltareas").trigger("reloadGrid");
-                }
-            });
         });
     });
 

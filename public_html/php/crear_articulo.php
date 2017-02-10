@@ -7,7 +7,7 @@ $imagen = $_POST["imagen"];
 $precio = (float) $_POST["precio"];
 $categoria = (int) $_POST["categoria"];
 
-$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
 mysqli_set_charset($con, "utf8");
 
 $sql = "INSERT INTO articulo VALUES (null, '".$nombre."', '".$descripcion."', '".$imagen."', ".$precio.", ".$categoria.")";
