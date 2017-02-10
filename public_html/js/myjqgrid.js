@@ -7,6 +7,7 @@ $(document).ready(function () {
     var nombreUsr;
     var passwordUsr;
     var emailUsr;
+    var roleUsr;
 
     //Arregla el error "Uncaught TypeError: Cannot read property 'msie' of undefined" del JqGrid, NO BORRAR
     jQuery.browser = {};
@@ -210,7 +211,7 @@ $(document).ready(function () {
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btn_crear' href='javascript:void(0)' data-toggle='modal' data-target='#modalPedido'>Crear</a> " +
-                "<a id='btn_modificar' href='javascript:void(0)' data-toggle='modal' data-target='#modalPedido'>Modificar</a> " +
+                "<a id='btn_modificar' href='javascript:void(0)'>Modificar</a> " +
                 "<a id='btn_eliminar' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
         $("#capaJqgrid").append(links);
@@ -224,6 +225,7 @@ $(document).ready(function () {
 
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
+                $("#modalPedido").show();
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
                 idPed = ret.id;
                 fechaPed = ret.fecha;
@@ -231,7 +233,7 @@ $(document).ready(function () {
                 //$("#inpId").val(idPed);
                 $("#inpFecha").val(fechaPed);
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
 
@@ -250,32 +252,8 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
-        });
-
-        $("#btn_aceptarPedido").click(function () {
-            fechaPed = $("#inpFecha").val();
-
-            if (opc === 1) {
-                url = "php/crear_pedido.php";
-            } else if (opc === 2) {
-                url = "php/update_pedido.php";
-            }
-
-            var data = {
-                "id": idPed,
-                "fecha": fechaPed
-            };
-
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: url,
-                success: function (data) {
-                    $("#tbltareas").trigger("reloadGrid");
-                }
-            });
         });
 
         jQuery("#tbltareas").jqGrid({
@@ -297,13 +275,37 @@ $(document).ready(function () {
         });
     });
 
+    $("#btn_aceptarPedido").click(function () {
+        fechaPed = $("#inpFecha").val();
+
+        if (opc === 1) {
+            url = "php/crear_pedido.php";
+        } else if (opc === 2) {
+            url = "php/update_pedido.php";
+        }
+
+        var data = {
+            "id": idPed,
+            "fecha": fechaPed
+        };
+
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: url,
+            success: function (data) {
+                $("#tbltareas").trigger("reloadGrid");
+            }
+        });
+    });
+
     //USUARIOS
     $('#btn_usr').click(function () {
         pintarItemActivo($(this).attr("id"));
         $("#capaJqgrid").children().remove();
         tabla = "<table id='tbltareas'></table>";
         links = "<a id='btn_crear' href='javascript:void(0)' data-toggle='modal' data-target='#modalUsuario'>Crear</a> " +
-                "<a id='btn_modificar' href='javascript:void(0)' data-toggle='modal' data-target='#modalUsuario'>Modificar</a> " +
+                "<a id='btn_modificar' href='javascript:void(0)'>Modificar</a> " +
                 "<a id='btn_eliminar' href='javascript:void(0)'>Eliminar</a>";
         $("#capaJqgrid").append(tabla);
         $("#capaJqgrid").append(links);
@@ -314,20 +316,22 @@ $(document).ready(function () {
 
         $("#btn_modificar").click(function () {
             opc = 2;
-
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
+                $("#modalUsuario").modal("show");
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
                 idUsr = ret.id;
                 nombreUsr = ret.nombre;
                 passwordUsr = ret.password;
                 emailUsr = ret.email;
+                roleUsr = ret.role;
 
                 $("#inpNombreUsr").val(nombreUsr);
                 $("#inpPassword").val(passwordUsr);
                 $("#inpEmail").val(emailUsr);
+                $("#inpRole").val(roleUsr);
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
         });
 
@@ -346,48 +350,21 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                alert("Please select row");
+                $("#modalError").modal("show");
             }
-        });
-
-        $("#btn_aceptarUsuario").click(function () {
-            nombreUsr = $("#inpNombreUsr").val();
-            passwordUsr = $("#inpPassword").val();
-            emailUsr = $("#inpEmail").val();
-
-            if (opc === 1) {
-                url = "php/crear_usuario.php";
-            } else if (opc === 2) {
-                url = "php/update_usuario.php";
-            }
-
-            var data = {
-                "id": idUsr,
-                "nombre": nombreUsr,
-                "password": passwordUsr,
-                "email": emailUsr
-            };
-
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: url,
-                success: function (data) {
-                    $("#tbltareas").trigger("reloadGrid");
-                }
-            });
         });
 
         jQuery("#tbltareas").jqGrid({
             url: 'php/lista_usuarios.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames: ['Id', 'Nombre', 'Password', 'Email'],
+            colNames: ['Id', 'Nombre', 'Password', 'Email', 'Role'],
             colModel: [
                 {name: 'id', index: 'id', width: 50},
                 {name: 'nombre', index: 'nombre', width: 200},
                 {name: 'password', index: 'password', width: 200},
-                {name: 'email', index: 'email', width: 200}
+                {name: 'email', index: 'email', width: 200},
+                {name: 'role', index: 'role', width: 200}
             ],
             pager: '#paginacion',
             rowNum: 10,
@@ -398,6 +375,38 @@ $(document).ready(function () {
             caption: 'Listado de Usuarios'
         });
     });
+
+    $("#btn_aceptarUsuario").click(function () {
+        nombreUsr = $("#inpNombreUsr").val();
+        passwordUsr = $("#inpPassword").val();
+        emailUsr = $("#inpEmail").val();
+        roleUsr = $("#inpRole").val();
+
+        if (opc === 1) {
+            url = "php/crear_usuario.php";
+        } else if (opc === 2) {
+            url = "php/update_usuario.php";
+        }
+
+        var data = {
+            "id": idUsr,
+            "nombre": nombreUsr,
+            "password": passwordUsr,
+            "email": emailUsr,
+            "role": roleUsr
+        };
+
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: url,
+            success: function (data) {
+                $("#tbltareas").trigger("reloadGrid");
+            }
+        });
+    });
+
+
 });
 
 function pintarItemActivo(idItemActivo) {

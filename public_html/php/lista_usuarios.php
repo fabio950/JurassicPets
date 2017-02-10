@@ -40,7 +40,7 @@ $responce->records = $count;
 $i = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $responce->rows[$i]['id'] = $row['id'];
-    $responce->rows[$i]['cell'] = array($row['id'], $row['nombre'], $row['password'], $row['email']);
+    $responce->rows[$i]['cell'] = array($row['id'], $row['nombre'], $row['password'], $row['email'], $row['role']);
     $i++;
 }
 
