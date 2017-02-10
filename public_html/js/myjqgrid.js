@@ -50,6 +50,7 @@ $(document).ready(function () {
 
         $("#btnCrearCategoria").click(function () {
             opc = 1;
+            vaciarForm("formCategoria");
         });
 
         $("#btnModificarCategoria").click(function () {
@@ -141,6 +142,7 @@ $(document).ready(function () {
 
         $("#btnCrearArticulo").click(function () {
             opc = 1;
+            vaciarForm("formArticulo");
         });
 
         $("#btnModificarArticulo").click(function () {
@@ -218,19 +220,18 @@ $(document).ready(function () {
 
         $("#btn_crear").click(function () {
             opc = 1;
+            vaciarForm("pedidoForm");
         });
 
         $("#btn_modificar").click(function () {
             opc = 2;
-
             var id = jQuery("#tbltareas").jqGrid('getGridParam', 'selrow');
             if (id) {
-                $("#modalPedido").show();
+                $("#modalPedido").modal('show');
                 var ret = jQuery("#tbltareas").jqGrid('getRowData', id);
                 idPed = ret.id;
                 fechaPed = ret.fecha;
 
-                //$("#inpId").val(idPed);
                 $("#inpFecha").val(fechaPed);
             } else {
                 $("#modalError").modal("show");
@@ -312,6 +313,7 @@ $(document).ready(function () {
 
         $("#btn_crear").click(function () {
             opc = 1;
+            vaciarForm("usuarioForm");
         });
 
         $("#btn_modificar").click(function () {
@@ -412,4 +414,8 @@ $(document).ready(function () {
 function pintarItemActivo(idItemActivo) {
     $("#linksCrud").children().removeClass("active");
     $("#" + idItemActivo).addClass("active");
-} 
+}
+
+function vaciarForm(idForm) {
+    $("#"+idForm).children().children().children("input").val("");
+}
