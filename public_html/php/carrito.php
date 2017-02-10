@@ -5,7 +5,7 @@ $ocarrito = new stdClass();
 
 $ocarrito = json_decode($carrito);
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 
 $sql = "INSERT INTO pedido VALUES (null, '$ocarrito->fecha');";
 

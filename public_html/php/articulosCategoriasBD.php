@@ -1,7 +1,7 @@
 <?php
 
 $id = $_GET["id"];
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 
 $sql = "SELECT * FROM articulo WHERE categoria=$id";
 

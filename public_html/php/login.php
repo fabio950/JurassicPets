@@ -2,7 +2,7 @@
 session_start();
 $nombre = $_POST["nombre"];
 $password = $_POST["password"];
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 $sql = "SELECT * FROM usuario WHERE nombre='$nombre' AND password='$password'";
 $result = mysqli_query($con, $sql);
 $num_row = mysqli_num_rows($result);

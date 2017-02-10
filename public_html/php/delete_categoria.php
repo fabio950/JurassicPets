@@ -2,7 +2,7 @@
 
 $id = (int) $_POST["id"];
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 
 $sql = "DELETE FROM categoria WHERE id=".$id."";
 

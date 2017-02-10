@@ -10,7 +10,7 @@ if (!$sidx) {
     $sidx = 1;
 }
 
-$con = mysqli_connect("localhost", "root", "", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
 mysqli_set_charset($con, "utf8");
 
 $sql = "SELECT COUNT(*) AS count FROM pedido";
