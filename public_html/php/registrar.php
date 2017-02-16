@@ -2,7 +2,7 @@
 $nombre = $_POST["nombre"];
 $password = $_POST["password"];
 $email = $_POST["email"];
-$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
 $sqlSelect = "SELECT * FROM usuario WHERE email='$email'";
 $result = mysqli_query($con, $sqlSelect);
 $num_row = mysqli_num_rows($result);

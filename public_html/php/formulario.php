@@ -37,7 +37,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="login-form" style="display: block;" action="login.php">
+                                    <form id="login-form" style="display: block;">
                                         <div class="form-group">
                                             <label for="nombre" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="register-form" style="display: none;" action="registrar.php">
+                                    <form id="register-form" style="display: none;">
                                         <div class="form-group">
                                             <label for="nombre" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">

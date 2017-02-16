@@ -67,7 +67,7 @@ and open the template in the editor.
                         <?php
                         session_start();
                         if (isset($_SESSION['usuario'])) {
-                            if (isset($_SESSION['role'])) {
+                            if($_SESSION['role'] == 'administrador'){
                                 ?>
                                 <a href="jqgrid.php" class="white-text"><i class="fa fa-cog"> </i></a>
                                 <?php

@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "jurassicpets", "jurassicpets");
+$con = mysqli_connect("localhost", "root", "", "jurassicpets");
 
 $sql = "SELECT * FROM categoria";
 

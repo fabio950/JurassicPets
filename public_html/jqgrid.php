@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['usuario'])){
-    if(isset($_SESSION['role'])){
+    if($_SESSION['role'] == 'administrador'){
 ?>
 <!DOCTYPE html>
 <!--
@@ -229,6 +229,10 @@ and open the template in the editor.
 
 </html>
 <?php
+    }else{
+        header('Location: index.php');
     }
-}header('Location: index.php');
+}else{
+    header('Location: index.php');
+}
 ?>
